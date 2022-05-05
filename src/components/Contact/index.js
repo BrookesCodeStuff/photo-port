@@ -13,7 +13,6 @@ function ContactForm() {
   function handleChange(event) {
     if (event.target.name === "email") {
       const isValid = validateEmail(event.target.value);
-      console.log(isValid);
       if (!isValid) {
         setErrorMessage("Your email address is invalid.");
       } else {
@@ -47,7 +46,7 @@ function ContactForm() {
             type="text"
             name="name"
             defaultValue={name}
-            onChange={handleChange}
+            onBlur={handleChange}
           />
         </div>
         <div>
@@ -56,7 +55,7 @@ function ContactForm() {
             type="email"
             name="email"
             defaultValue={email}
-            onChange={handleChange}
+            onBlur={handleChange}
           />
         </div>
         <div>
@@ -65,9 +64,14 @@ function ContactForm() {
             name="message"
             rows="5"
             defaultValue={message}
-            onChange={handleChange}
+            onBlur={handleChange}
           />
         </div>
+        {errorMessage && (
+          <div>
+            <p className="error-text">{errorMessage}</p>
+          </div>
+        )}
         <button type="submit">Submit</button>
       </form>
     </section>
